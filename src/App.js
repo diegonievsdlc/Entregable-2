@@ -2,13 +2,13 @@ import axios from 'axios';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Info from './components/Info';
+import Loader from './components/Loader';
 
 function App() {
   //Degrees Cº/Fº
   const [degrees, setDegrees] = useState(0)
   const [celsiusDegrees, setCelsiusDegrees] = useState(true)
   const changeGrade = () => setCelsiusDegrees(!celsiusDegrees)
-
   //Api
   const [dataApi, setDataApi] = useState({})
   function success(pos) {
@@ -18,6 +18,7 @@ function App() {
         setDataApi(res.data)
         setDegrees(res.data.main.temp)
       })
+    document.getElementById('loader').classList.toggle('loader2')
   };
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <>
+      <Loader />
       <div className="box">
         <h1>Wheather App</h1>
         <h2>{dataApi.sys?.country + " " + dataApi.name}</h2>
