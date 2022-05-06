@@ -1,29 +1,15 @@
-import axios from 'axios';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Info from './components/Info';
 import Loader from './components/Loader';
+import useApi from './hooks/useApi';
 
 function App() {
   //Degrees Cº/Fº
-  const [degrees, setDegrees] = useState(0)
   const [celsiusDegrees, setCelsiusDegrees] = useState(true)
   const changeGrade = () => setCelsiusDegrees(!celsiusDegrees)
   //Api
-  const [dataApi, setDataApi] = useState({})
-  function success(pos) {
-    var crd = pos.coords;
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=bd2602d2f91985f5a8f19f1df94f4cac`)
-      .then(res => {
-        setDataApi(res.data)
-        setDegrees(res.data.main.temp)
-      })
-    document.getElementById('loader').classList.toggle('loader2')
-  };
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success);
-  }, [])
-
+  const {dataApi, degrees} = useApi()
   return (
     <>
       <Loader />
