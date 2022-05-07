@@ -1,15 +1,15 @@
 import './App.css';
 import { useState } from 'react';
-import Info from './components/Info';
+import Information from './components/Information';
 import Loader from './components/Loader';
-import useApi from './hooks/useApi';
+import useBringApi from './hooks/useBringApi';
 
 function App() {
   //Degrees Cº/Fº
   const [celsiusDegrees, setCelsiusDegrees] = useState(true)
   const changeGrade = () => setCelsiusDegrees(!celsiusDegrees)
   //Api
-  const {dataApi, degrees} = useApi()
+  const {dataApi, degrees} = useBringApi()
   return (
     <>
       <Loader />
@@ -21,7 +21,7 @@ function App() {
             <img src={`http://openweathermap.org/img/wn/${dataApi.weather?.[0].icon}@2x.png`} alt="Img" />
             <h1>{celsiusDegrees ? `${(degrees - 273.15).toFixed(2)} Cº`: `${((degrees - 273.15) * 1.8 +32).toFixed(2)} Fº`}</h1>
           </div>
-          <Info text1={dataApi.weather?.[0].description} text2={dataApi.wind?.speed} text3={dataApi.clouds?.all} text4={dataApi.wind?.gust}/>
+          <Information description={dataApi.weather?.[0].description} speed={dataApi.wind?.speed} all={dataApi.clouds?.all} gust={dataApi.wind?.gust}/>
         </div>
         <button onClick={changeGrade}>Degrees ºF/ºC</button>
       </div>
