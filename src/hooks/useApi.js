@@ -18,19 +18,19 @@ const useApi = () => {
         setColor('https://c.tenor.com/PagXtQ_2mw0AAAAC/clouds-stormy.gif')
       }
     }
-
-    function success(pos) {
-      var crd = pos.coords;
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=bd2602d2f91985f5a8f19f1df94f4cac`)
-      .then(res => {
-        setDataApi(res.data)
-        setDegrees(res.data.main.temp)
-        setBackground(res.data.weather[0].description)
-      })      
-      document.getElementById('loader').classList.toggle('loader2')
-    };
     
     useEffect(() => {
+      function success(pos) {
+        var crd = pos.coords;
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=bd2602d2f91985f5a8f19f1df94f4cac`)
+        .then(res => {
+          setDataApi(res.data)
+          setDegrees(res.data.main.temp)
+          setBackground(res.data.weather[0].description)
+        })      
+        document.getElementById('loader').classList.toggle('loader2')
+      };
+
       navigator.geolocation.getCurrentPosition(success);
     }, [])
 
