@@ -8,13 +8,12 @@
 body{
   width: 100%;
   height: 100vh;
-  /*background-image: url(./assets/luz.gif);*/
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;justify-content: center;align-items: center;
 }
 span{
-  color: #772efd;
+  color: #006bc6;
   font-size: 19px;
 }
 li{
@@ -23,7 +22,8 @@ li{
 .box{
   min-width: 305px;
   height: 80vh;
-  background-color: yellow;
+  background: rgba(5, 7, 12, 0.50);
+  z-index: 9999;
   padding: 40px 20px 10px;
   border-radius: 15px;
   display: flex;flex-direction: column;justify-content: flex-start;align-items: center;
@@ -31,16 +31,16 @@ li{
 .box h1{
   font-size: 29px;
   margin: 0 0 24px;
-  color: #772efd;
+  color: #006bc6;
 }
 .box > h2{
   font-size: 19px;
   margin: 0 0 19px;
-  color: #772efd;
+  color: #006bc6;
 }
 .box button{
   padding: 10px 15px;
-  background-color: #772efd;
+  background-color: #006bc6;
   border-radius: 5px;
   border: none;
   font-size: 19px;
@@ -54,23 +54,73 @@ li{
   padding: 10px;
 }
 /*Loader*/
-.loader{
+.container-loader{
   width: 100%;
-  height: 100vh;
-  background-image: radial-gradient(circle at 28.84% 75.22%, #fbffff 0, #ecfffd 7.14%, #dafffa 14.29%, #c6fff7 21.43%, #aefff5 28.57%, #92fff3 35.71%, #70fcf2 42.86%, #3cf2f2 50%, #00e7f3 57.14%,yellow 64.29%, red 71.43%, green 78.57%, blue 85.71%, #70fcf2 92.86%,#70fcf2 100%);
+  min-height: 100vh;
+  background: linear-gradient(45deg, #006bc6, #1ecafc);
   position: fixed;top: 0;left: 0;
   display: flex;justify-content: center;align-items: center;
   clip-path: circle(141.2% at 100% 0);
   transition: all .5s ease-in;
 }
-.loader2{
+.container-loader2{
   clip-path: circle(0.0% at 100% 0);
+}
+.content{
+  position: relative;
+  display: flex;justify-content: center;align-items: center;
+}
+.content h2{
+  position: absolute;
+  font-size: 1rem;
+  color: aliceblue;
+  text-align: center;
+}
+.loader{
+  position: relative;
+  width: 300px;height: 300px;
+  display: flex;justify-content: center;align-items: center;
+}
+.loader span{
+  position: absolute;
+  left: 0;
+  transform-origin: 150px;
+  width: 100px;height: 100px;
+  background-color: aliceblue;
+  border-radius: 50%;
+  animation: animate 4s ease-in-out infinite;
+  animation-delay: calc(0.15s * var(--i));
+}
+@keyframes animate{
+  0%, 10%{
+    width: 100px;
+    height: 100px;
+    transform: rotate(0deg) translateX(120px);
+  }
+  40%, 70%{
+    width: 40px;
+    height: 40px;
+    transform: rotate(calc(360deg / 8 * var(--i)));
+    box-shadow: 0 0 0 10px #fff;
+  }
+  90%, 100%{
+    width: 100px;
+    height: 100px;
+    transform: rotate(0deg) translateX(120px);
+  }
+}
+.hero-svg {
+  position: absolute;bottom: 0;
+  width: 100%;
+  height: 10vh;
+}
+.hero-svg path{
+  fill: #f2f2f2;
 }
 
 @media (min-width: 500px) {
   .box{
     height: auto;
-    background-color: yellow;
     padding: 40px 20px 10px;
     border-radius: 15px;
     display: flex;flex-direction: column;justify-content: flex-start;align-items: center;

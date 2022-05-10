@@ -1,7 +1,6 @@
 import './App.css';
 import { useState } from 'react';
 import Information from './components/Information';
-import Loader from './components/Loader';
 import useBringApi from './hooks/useBringApi';
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
   const {dataApi, degrees} = useBringApi()
   return (
     <>
-      <Loader />
       <div className="box">
         <h1>Wheather App</h1>
         <h2>{dataApi.sys?.country + " " + dataApi.name}</h2>

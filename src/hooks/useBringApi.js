@@ -30,7 +30,7 @@ const useBringApi = () => {
           setDegrees(res.data.main.temp)
           obtainBackground(res.data.weather[0].description)
         })      
-        document.getElementById('loader').classList.toggle('loader2')
+        document.getElementById('loader').classList.toggle('container-loader2')
       };
 
       navigator.geolocation.getCurrentPosition(success);
